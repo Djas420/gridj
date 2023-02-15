@@ -33,10 +33,15 @@ initGridJ({
 ```
 
 Configuring Dynamic Column Padding:
+
 calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))
+
 '15' — min offset value
+
 '30' — max offset value
+
 '920' — min breakpoint
+
 '1200' — max breakpoint
 
 ## Managing grid display
