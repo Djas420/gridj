@@ -1,0 +1,23 @@
+{
+  "name": "@djas420/gridj",
+  "version": "1.0.0",
+  "description": "Developer grid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Djas420/gridj.git"
+  },
+  "keywords": [
+    "grid",
+    "developer"
+  ],
+  "author": "Djas420",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/Djas420/gridj/issues"
+  },
+	"homepage": "https://gridj.ru",
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb": "^19.0.4"
+  }
+}
