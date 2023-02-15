@@ -5,7 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-	const initGridJ = (settings) => {
+	window.initGridJ = (settings) => {
 		let visible;
 		const gridjHidden = localStorage.getItem('gridj-open');
 		if (gridjHidden) {
@@ -111,26 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	};
-
-	initGridJ({
-		bgColor: 'rgba(255, 0, 0, 0.2)',
-		media: {
-			320: {
-				padding: '0 15px',
-				gap: '15px',
-				columns: 4,
-			},
-			920: {
-				padding: '0',
-				gap: 'calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))',
-				columns: 6,
-			},
-			1200: {
-				padding: '0 15px',
-				gap: '15px',
-				columns: 12,
-				fix: '1000px',
-			},
-		},
-	});
 }, false);
