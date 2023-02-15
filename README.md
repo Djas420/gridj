@@ -5,6 +5,7 @@
 Display the grid on the site during frontend development.
 
 Add the gridj.js file to your project.
+
 Set up the grid like a designer.
 
 ```javascript
@@ -44,5 +45,6 @@ Show/Hide — Alt + G
 
 ## Information
 
-Official site [https://gridj.ru](https://gridj.ru) (in developing)
+Official site [https://gridj.ru](https://gridj.ru) (in developing).
+
 Email for feedback and suggestions [info@gridj.ru](mailto:info@gridj.ru)
