@@ -13,9 +13,12 @@ This package can be installed with:
 
 npm
 npm i -D @djas420/gridj
+
 And:
+
 GitLab
 git clone https://gitlab.com/Djas420/gridj.git
+
 GitHub
 git clone https://github.com/Djas420/gridj.git
 
