@@ -6,14 +6,21 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 	window.initGridJ = (settings) => {
-		let visible;
-		const gridjHidden = localStorage.getItem('gridj-open');
-		if (gridjHidden) {
-			visible = gridjHidden;
-		} else {
-			visible = 'true';
+		// Settings localStorage
+		let gridjColumn = localStorage.getItem('gridj-column');
+		if (!gridjColumn) {
+			gridjColumn = 'false';
+		}
+		let gridjOutline = localStorage.getItem('gridj-outline');
+		if (!gridjOutline) {
+			gridjOutline = 'false';
+		}
+		let gridjBackground = localStorage.getItem('gridj-background');
+		if (!gridjBackground) {
+			gridjBackground = 'false';
 		}
 
+		// Generate media query
 		let media = '';
 		Object.keys(settings.media).forEach((el) => {
 			let fix;
@@ -34,30 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
 			`;
 		});
 
+		// Generate style css
 		const style = `
 			<style class="grid-dj__style">
 				.grid-dj {
 					box-sizing: border-box;
-					position: fixed;
+					position: absolute;
 					top: 0;
-					bottom: 0;
-					left: 0;
 					width: 100vw;
-					z-index: 2147483647;
+					height: 100%;
+					left: 0;
+					z-index: ${settings.zIndexGrid};
 					display: flex;
 					pointer-events: none;
+					visibility: hidden;
 				}
-				.grid-dj_hidden {
-					display: none;
+				.grid-dj_visible {
+					visibility: visible;
 				}
 				.grid-dj__col {
 					flex: auto;
-					background-color: ${settings.bgColor};
+					background-color: ${settings.bgColorColumns};
 				}
 				${media}
 			</style>
 		`;
 
+		// Generate columns
 		let vw = document.documentElement.clientWidth;
 		const mw = Object.keys(settings.media);
 		const col = () => {
@@ -71,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			return column;
 		};
-
 		const columns = (c) => {
 			let gridDjCol = '';
 			for (let i = 0; i < c; i += 1) {
@@ -80,34 +89,102 @@ document.addEventListener('DOMContentLoaded', () => {
 			return gridDjCol;
 		};
 
-		const gridDj = `
+		// Generate columns HTML
+		const gridColumns = `
 			${style}
-			<grid-dj class="grid-dj${(visible === 'true') ? '' : ' grid-dj_hidden'}">
+			<grid-dj class="grid-dj${(gridjColumn === 'true') ? ' grid-dj_visible' : ''}">
 				${columns(col())}
 			</grid-dj>
 		`;
+		document.querySelector(settings.insertGrid).insertAdjacentHTML('beforeend', gridColumns);
 
-		document.body.insertAdjacentHTML('beforeend', gridDj);
+		const grid = document.querySelector('.grid-dj');
 
-		window.addEventListener('resize', () => {
-			vw = document.documentElement.clientWidth;
-			document.getElementsByClassName('grid-dj')[0].innerHTML = columns(col());
-		});
+		// Resize windows
+		function resize() {
+			clearTimeout(this.timeOut);
+			this.timeOut = setTimeout(() => {
+				vw = document.documentElement.clientWidth;
+				grid.innerHTML = columns(col());
+			}, 100);
+		}
+		window.addEventListener('resize', resize);
 
-		let key = [];
+		// Generate random RGB
+		function randomInteger() {
+			return Math.floor(Math.random() * (256));
+		}
+		function randomRgbColor() {
+			return [randomInteger(), randomInteger(), randomInteger()];
+		}
 
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Alt') {
-				key = [];
-				key.push('Alt');
+		// Query elements
+		const notElementsDefault = ['html', 'head', 'head *', 'meta', 'link', 'style', 'script', '.grid-dj', '.grid-dj__col'];
+		const notElements = [...notElementsDefault, ...settings.notElements];
+		function allElement() {
+			return document.querySelectorAll(`*:not(${notElements.join()})`);
+		}
+
+		// show backgroundColor elements
+		if (gridjOutline === 'true') {
+			allElement().forEach((elem) => {
+				const el = elem;
+				el.style.outline = `1px solid rgb(${randomRgbColor()})`;
+			});
+		}
+		// show outline elements
+		if (gridjBackground === 'true') {
+			allElement().forEach((elem) => {
+				const el = elem;
+				el.style.backgroundColor = `rgba(${randomRgbColor()}, ${settings.bgOpacity})`;
+			});
+		}
+
+		// Events keydown
+		const keyDown = [];
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Alt') {
+				e.preventDefault();
+				keyDown.push('Alt');
 			}
-			if (event.code === 'KeyG') {
-				if (key.includes('Alt')) {
-					event.preventDefault();
-					document.getElementsByClassName('grid-dj')[0].classList.toggle('grid-dj_hidden');
-					localStorage.setItem('gridj-open', (visible === 'true') ? 'false' : 'true');
-				}
-				key = [];
+			if (e.code === 'KeyG' && keyDown.includes('Alt')) {
+				e.preventDefault();
+				grid.classList.toggle('grid-dj_visible');
+				gridjColumn = (gridjColumn === 'true') ? 'false' : 'true';
+				localStorage.setItem('gridj-column', gridjColumn);
+			}
+			if (e.code === 'KeyO' && keyDown.includes('Alt')) {
+				e.preventDefault();
+				gridjOutline = (gridjOutline === 'true') ? 'false' : 'true';
+				localStorage.setItem('gridj-outline', gridjOutline);
+
+				allElement().forEach((elem) => {
+					const el = elem;
+					if (gridjOutline === 'true') {
+						el.style.outline = `1px solid rgb(${randomRgbColor()})`;
+					} else {
+						el.style.outline = '';
+					}
+				});
+			}
+			if (e.code === 'KeyB' && keyDown.includes('Alt')) {
+				e.preventDefault();
+				gridjBackground = (gridjBackground === 'true') ? 'false' : 'true';
+				localStorage.setItem('gridj-background', gridjBackground);
+
+				allElement().forEach((elem) => {
+					const el = elem;
+					if (gridjBackground === 'true') {
+						el.style.backgroundColor = `rgba(${randomRgbColor()}, ${settings.bgOpacity})`;
+					} else {
+						el.style.backgroundColor = '';
+					}
+				});
+			}
+		});
+		document.addEventListener('keyup', (e) => {
+			if (e.key === 'Alt') {
+				keyDown.splice(0, keyDown.length);
 			}
 		});
 	};

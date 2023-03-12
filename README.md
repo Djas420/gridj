@@ -2,7 +2,8 @@
 
 ## Description
 
-Display the grid on the site during frontend development.
+The ability to display the grid on the site during the development of the interface and not only…
+As well as the outline of the elements and the background of the elements
 
 ## Quick start
 
@@ -10,41 +11,51 @@ Display the grid on the site during frontend development.
 
 This package can be installed with:
 
-[npm](https://www.npmjs.com/package/@djas420/gridj): `npm i -D @djas420/gridj`
+npm
+npm i -D @djas420/gridj
+And:
+GitLab
+git clone https://gitlab.com/Djas420/gridj.git
+GitHub
+git clone https://github.com/Djas420/gridj.git
 
 #### Static HTML
 
-Place the script before the closing "body" tag:
+Place the script before the closing body tag if using npm:
 
 ```html
-<script src="/node_modules/@djas420/gridj/gridj.js"></script>
+<script src="/node_modules/@djas420/gridj/gridj.min.js"></script>
 ```
 
-Next, set up the grid as a designer.
+The number of breakpoints is not limited and you set them yourself, below is an example.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
-  initGridJ({
-    bgColor: 'rgba(255, 0, 0, 0.2)', // Grid color
-    media: {
-      320: { // breakpoint
-        padding: '0 15px', // Grid indent
-        gap: '15px', // Column indent
-        columns: 4, // Number of columns
-      },
-      920: {
-        padding: '0',
-        gap: 'calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))', // Dynamic column padding
-        columns: 6,
-      },
-      1200: {
-        padding: '0 15px',
-        gap: '15px',
-        columns: 12,
-        fix: '1000px', // Fixed grid width
-      },
-    },
-  });
+ initGridJ({
+  insertGrid: 'body', // The element to insert the grid (tag, .class, #id), set the element to position: relative;
+  zIndexGrid: 100, // Set z-index for grid
+  bgColorColumns: 'rgba(255, 0, 0, 0.2)', // Grid color
+  notElements: ['body'], // List of exclusion items for "gridjOutline" and "gridjBackground"
+  bgOpacity: 1, // Element background transparency
+  media: {
+   320: { // Breakpoint
+    padding: '0 15px', // Grid indent
+    gap: '15px', // Column indent
+    columns: 4, // Number of columns
+   },
+   920: {
+    padding: '0',
+    gap: 'calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))', // Dynamic column padding
+    columns: 6,
+   },
+   1200: {
+    padding: '0 15px',
+    gap: '15px',
+    columns: 12,
+    fix: '1000px', // Fixed grid width
+   },
+  },
+ });
 }, false);
 ```
 
@@ -60,9 +71,33 @@ calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))
 
 '1200' — max breakpoint
 
-## Managing grid display
+## Control the display
 
-Show/Hide — Alt + G
+Enable/disable grid display using keyboard shortcut MacOs (Option&nbsp;G) Linux/Windows (Alt&nbsp;G)
+Turn on/off the display of layering using the keyboard shortcut MacOs (Option&nbsp;O) Linux/Windows (Alt&nbsp;O)
+Turn background display on/off using keyboard shortcut MacOs (Option&nbsp;B) Linux/Windows (Alt&nbsp;B)
+
+## From the author
+
+How to calculate the exact width of an element?
+For example, if there are 12 columns and the element should occupy 4 columns?
+Here is the solution:
+
+```css
+.elem {
+ width: calc(((100% - (((30px * 12) / 4) - 30px)) / 12) * 4);
+}
+```
+
+Setting the width of the element:
+
+calc(((100% - (((30px * 12) / 4) - 30px)) / 12) * 4)
+
+'12' — number of columns
+
+'30px' — indent between columns
+
+'4' — how many columns to occupy
 
 ## Information
 
