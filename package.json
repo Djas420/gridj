@@ -1,14 +1,16 @@
 {
   "name": "@djas420/gridj",
-  "version": "1.0.1",
-  "description": "Developer grid",
+  "version": "2.0.0",
+  "description": "grid directly on the site, layout improvement, tracking the nesting of elements…",
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/Djas420/gridj.git"
   },
   "keywords": [
-    "grid",
-    "developer"
+		"grid",
+    "developer",
+		"outline element",
+		"background element"
   ],
   "author": "Djas420",
   "license": "MIT",
