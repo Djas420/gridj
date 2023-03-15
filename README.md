@@ -76,9 +76,11 @@ calc(15px + (30 - 15) * (100vw - 920px) / (1200 - 920))
 
 ## Control the display
 
-Enable/disable grid display using keyboard shortcut MacOs (Option&nbsp;G) Linux/Windows (Alt&nbsp;G)
-Turn on/off the display of layering using the keyboard shortcut MacOs (Option&nbsp;O) Linux/Windows (Alt&nbsp;O)
-Turn background display on/off using keyboard shortcut MacOs (Option&nbsp;B) Linux/Windows (Alt&nbsp;B)
+Enable/disable grid display using keyboard shortcut MacOs&nbsp;(Option&nbsp;G) Linux/Windows&nbsp;(Alt&nbsp;G)
+
+Turn on/off the display of layering using the keyboard shortcut MacOs&nbsp;(Option&nbsp;O) Linux/Windows&nbsp;(Alt&nbsp;O)
+
+Turn background display on/off using keyboard shortcut MacOs&nbsp;(Option&nbsp;B) Linux/Windows&nbsp;(Alt&nbsp;B)
 
 ## From the author
 
@@ -107,3 +109,7 @@ calc(((100% - (((30px * 12) / 4) - 30px)) / 12) * 4)
 Official site [https://gridj.ru](https://gridj.ru) (in developing).
 
 Email for feedback and suggestions [info@gridj.ru](mailto:info@gridj.ru)
+
+## For designers
+
+Interested in participating in an open project, write to email [design@gridj.ru](mailto:design@gridj.ru)
