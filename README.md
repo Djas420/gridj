@@ -113,7 +113,3 @@ Email for feedback and suggestions [info@gridj.ru](mailto:info@gridj.ru)
 ## For designers
 
 Interested in participating in an open project, write to email [design@gridj.ru](mailto:design@gridj.ru)
-
-## Donate
-
-Card number: 4584 4328 1535 4163
