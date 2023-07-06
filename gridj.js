@@ -1,7 +1,7 @@
 /*!
  * Gridj v1.0.0 (https://gridj.ru)
  * Copyright 2023 The DjCo.ru Authors
- * Licensed under MIT (https://gitlab.com/Djas420/gridj/-/blob/main/LICENSE)
+ * Licensed under MIT (https://github.com/Djas420/gridj/-/blob/main/LICENSE)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
