@@ -12,19 +12,26 @@ As well as the outline of the elements and the background of the elements
 This package can be installed with:
 
 npm
-npm i -D @djas420/gridj
 
-And:
+```SHELL
+
+npm i -D @djas420/gridj
+```
+
+Or:
 
 GitHub
+
+```SHELL
 git clone https://github.com/Djas420/gridj.git
+```
 
 #### Static HTML
 
-Place the script before the closing body tag if using npm:
+Place the script before the closing body tag
 
 ```html
-<script src="/node_modules/@djas420/gridj/gridj.min.js"></script>
+<script src="/gridj.js"></script>
 ```
 
 The number of breakpoints is not limited and you set them yourself, below is an example.
@@ -93,7 +100,7 @@ Here is the solution:
 
 Setting the width of the element:
 
-calc(((100% - (((30px * 12) / 4) - 30px)) / 12) * 4)
+calc(((100% - (((30px *12) / 4) - 30px)) / 12)* 4)
 
 '12' — number of columns
 
@@ -103,10 +110,4 @@ calc(((100% - (((30px * 12) / 4) - 30px)) / 12) * 4)
 
 ## Information
 
-Official site [https://gridj.ru](https://gridj.ru) (in developing).
-
-Email for feedback and suggestions [info@gridj.ru](mailto:info@gridj.ru)
-
-## For designers
-
-Interested in participating in an open project, write to email [design@gridj.ru](mailto:design@gridj.ru)
+Email for feedback and suggestions [info@djco.ru](mailto:info@djco.ru)

@@ -1,5 +1,5 @@
 /*!
- * Gridj v1.0.0 (https://gridj.ru)
+ * Gridj v2.1.0 (https://gridj.ru)
  * Copyright 2023 The DjCo.ru Authors
  * Licensed under MIT (https://github.com/Djas420/gridj/-/blob/main/LICENSE)
  */
@@ -63,6 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
 					flex: auto;
 					background-color: ${settings.bgColorColumns};
 				}
+				.grid-dj__ba--bg::before {
+					background: var(--before-bg) ;
+				}
+				.grid-dj__ba--bg::after {
+					background: var(--after-bg) ;
+				}
+				.grid-dj__ba--outline::before {
+					outline: 1px solid var(--outline-before);
+				}
+				.grid-dj__ba--outline::after {
+					outline: 1px solid var(--outline-after);
+				}
 				${media}
 			</style>
 		`;
@@ -125,14 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			return document.querySelectorAll(`*:not(${notElements.join()})`);
 		}
 
-		// show backgroundColor elements
+		// show outline elements
 		if (gridjOutline === 'true') {
 			allElement().forEach((elem) => {
 				const el = elem;
 				el.style.outline = `1px solid rgb(${randomRgbColor()})`;
 			});
 		}
-		// show outline elements
+		// show backgroundColor elements
 		if (gridjBackground === 'true') {
 			allElement().forEach((elem) => {
 				const el = elem;
@@ -162,8 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					const el = elem;
 					if (gridjOutline === 'true') {
 						el.style.outline = `1px solid rgb(${randomRgbColor()})`;
+
+						el.classList.add('grid-dj__ba--outline');
+						el.style.setProperty("--outline-before", `rgba(${randomRgbColor()}, ${settings.bgOpacity})`);
+						el.style.setProperty("--outline-after", `rgba(${randomRgbColor()}, ${settings.bgOpacity})`);
+
 					} else {
 						el.style.outline = '';
+						el.classList.remove('grid-dj__ba--outline');
 					}
 				});
 			}
@@ -176,8 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					const el = elem;
 					if (gridjBackground === 'true') {
 						el.style.backgroundColor = `rgba(${randomRgbColor()}, ${settings.bgOpacity})`;
+
+						el.classList.add('grid-dj__ba--bg');
+						el.style.setProperty("--before-bg", `rgba(${randomRgbColor()}, ${settings.bgOpacity})`);
+						el.style.setProperty("--after-bg", `rgba(${randomRgbColor()}, ${settings.bgOpacity})`);
+
 					} else {
 						el.style.backgroundColor = '';
+						el.classList.remove('grid-dj__ba--bg');
 					}
 				});
 			}
